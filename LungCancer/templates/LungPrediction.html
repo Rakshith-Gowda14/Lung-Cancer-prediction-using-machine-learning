@@ -1,0 +1,408 @@
+{% extends "nav.html" %}
+{% block content %}
+{% load static %}
+<title> Lung Cancer Prediction</title>
+<style>
+body
+      {
+      background-color:#FFF5EE;
+      background-size:cover;
+      border:2px solid;
+      border-radius:10px;
+      align-content: normal;
+      }
+      body, div, form, input, select, textarea, label {
+      padding:10px;
+      margin:2px solid;
+      outline: none;
+      font-family:cambria;
+      font-size: 14px;
+      font-weight:bold;
+      color: black;
+      line-height: 20px;
+      }
+      h1 {
+  position: absolute;
+  margin:0;
+  font-size: 2%;
+  color: rgb(16, 148, 174);
+  line-height: 83px;
+  top:50px;
+  }
+  legend {
+  padding: 10px;
+  font-family: Roboto, Arial, sans-serif;
+  font-size: 18px;
+  color: rgb(255, 255, 255);
+  background-color: #1c87c9;
+  border-radius:5px;
+  }
+  .testbox {
+  display: flex;
+  padding: 20px;
+  }
+  form {
+  width: 100%;
+  padding: 20px;
+  border-radius: 10px;
+  background: #FFFAFA;
+  box-shadow: 0 0 8px #006622;
+  }
+  .banner {
+  position: relative;
+  height: 200px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  }
+  .banner::after {
+  content: "";
+  background-color: rgba(0, 0, 0, 0.2);
+  border-radius:10px;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  }
+  input, select, textarea {
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  }
+  input {
+  width: calc(100% - 10px);
+  padding: 5px;
+  }
+  .item {
+  position: relative;
+  margin: 10px 0;
+  }
+   .item input:hover, .item select:hover, .item textarea:hover {
+  border: 1px solid transparent;
+  box-shadow: 0 0 3px 0  #006622;
+  color: #006622;
+  }
+  .colums {
+  display:flex;
+  justify-content:space-between;
+  flex-direction:row;
+  flex-wrap:wrap;
+  }
+  .colums div {
+  width:48%;
+  }
+
+  .btn-block {
+  margin-top: 10px;
+  text-align: center;
+  }
+  button {
+  width: 150px;
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  background:  #1c87c9;
+  font-size: 16px;
+  color: #fff;
+  cursor: pointer;
+  }
+  button:hover {
+  background:  #0692e8;
+  }
+
+
+
+
+      /* .testbox {
+      display: flex;
+      padding: 20px;
+      }
+      .item {
+      position: relative;
+      margin: 10px 0;
+      }
+      .colums {
+      display:flex;
+      justify-content:space-between;
+      flex-direction:row;
+      flex-wrap:wrap;
+      }
+      .colums div {
+      width:48%;
+      }
+
+      .btn-block {
+      margin-top: 10px;
+      text-align: center;
+      }
+      button {
+      width: 150px;
+      padding: 10px;
+      border: none;
+      border-radius: 5px;
+      background:  #1c87c9;
+      font-size: 16px;
+      color: #fff;
+      cursor: pointer;
+      }
+      button:hover {
+      background:  #0692e8;
+      } */
+</style>
+</head>
+
+<body>
+<div>
+  <!-- {% csrf_token %} -->
+        <h1>Hello {{user.first_name}}</h1>
+    <br>
+    <h2><u>Based on the details given:</u></h2></div>
+    <div class="testbox">
+    <div class="colums">
+          <div class="item">
+        <h2>Age:{{age}}</h2>
+          </div>
+
+
+          <div class="item">
+        <h2>Gender:{{gender}}</h2>
+          </div>
+
+
+          <div class="item">
+        <h2>Air_Pollution:{{airpollution}}</h2>
+          </div>
+
+
+          <div class="item">
+        <h2>Alcohol_Use:{{alcoholuse}}</h2>
+          </div>
+
+
+          <div class="item">
+        <h2>Dust_Allergy:{{dustallergy}}</h2></div>
+
+
+          <div class="item">
+        <h2>OccuPational_Hazards:{{occupationalhazards}}</h2></div>
+
+
+          <div class="item">
+        <h2>Genetic_Risk:{{geneticrisk}}</h2></div>
+
+
+          <div class="item">
+        <h2>Chronic_Lung_Disease:{{chroniclungdisease}}</h2></div>
+
+
+          <div class="item">
+        <h2>Balanced_Diet:{{balanceddiet}}</h2></div>
+
+
+          <div class="item">
+        <h2>Obesity:{{obesity}}</h2></div>
+
+
+          <div class="item">
+        <h2>Smoking:{{smoking}}</h2></div>
+
+
+          <div class="item">
+        <h2>Passive_Smoker:{{passivesmoker}}</h2></div>
+
+
+          <div class="item">
+        <h2>Chest_Pain:{{chestpain}}</h2></div>
+
+
+          <div class="item">
+        <h2>Coughing_Of_Blood:{{coughingofblood}}</h2></div>
+
+
+          <div class="item">
+        <h2>Fatigue:{{fatigue}}</h2></div>
+
+
+          <div class="item">
+        <h2>Weight_Loss:{{weightloss}}</h2></div>
+
+
+          <div class="item">
+        <h2>Shortness_Of_Breath:{{shortnessofbreath}}</h2></div>
+
+          <div class="item">
+        <h2>Wheezing:{{wheezing}}</h2></div>
+
+          <div class="item">
+        <h2>Swallowing_Difficulty:{{swallowingdifficulty}}</h2></div>
+
+          <div class="item">
+        <h2>Clubbing_Of_Finger_Nails:{{clubbingoffingernails}}</h2></div>
+
+          <div class="item">
+        <h2>Frequent_Cold:{{frequentcold}}</h2></div>
+
+          <div class="item">
+        <h2>Dry_Cough:{{drycough}}</h2></div>
+
+          <div class="item">
+        <h2>Snoring:{{snoring}}</h2></div>
+      </div>
+    </div>
+<div class="item">
+    <p style="color:red;font-size:30px;"> Result : You Are Affected With {{lungcancer}} Level Lung Cancer</p></div>
+    <form method="get" action="treatment" >
+    <div class="btn-block">
+        <h3><center><button type="submit" >BACK</button></center></h3>
+    </div>
+    </form>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- <head>
+  <style>
+    /* Apply some basic styles to the form */
+body {
+    font-family: Arial, sans-serif;
+    text-align: center;
+    background-color: #f0f0f0;
+}
+
+h1 {
+    color: #333;
+}
+
+form {
+    max-width: 400px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 5px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Style the labels and checkboxes */
+label {
+    display: block;
+    margin-bottom: 10px;
+    font-weight: bold;
+    color: #333;
+}
+
+input[type="checkbox"] {
+    margin-right: 5px;
+}
+
+/* Style the submit button */
+input[type="submit"] {
+    background-color: #007BFF;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+input[type="submit"]:hover {
+    background-color: #0056b3;
+}
+
+/* Add some spacing between the checkboxes */
+input[type="checkbox"] + label {
+    margin-left: 25px;
+}
+
+/* Center the form on smaller screens */
+@media (max-width: 480px) {
+    form {
+        max-width: 90%;
+    }
+}
+
+  </style>
+</head>
+<h4> Lung Cancer Prediction </h4>
+    <form action="LungPrediction.html" method="post">
+      {% csrf_token %}
+        <label for="yellowFingers">Yellow Fingers</label>
+        <input type="text" name="healthIssue" id="yellowFingers"  placeholder="Enter 0 or 1"><br>
+
+        <label for="anxiety">Anxiety</label>
+        <input type="text" name="healthIssue" id="anxiety"  placeholder="Enter 0 or 1"><br>
+
+        <label for="peerPressure">Peer Pressure</label>
+        <input type="text" name="healthIssue" id="peerPressure"  placeholder="Enter 0 or 1"><br>
+
+        <label for="chronicDisease">Chronic Disease</label>
+        <input type="text" name="healthIssue" id="chronicDisease"  placeholder="Enter 0 or 1"><br>
+
+        <label for="fatigue">Fatigue</label>
+        <input type="text" name="healthIssue" id="fatigue"  placeholder="Enter 0 or 1"><br>
+
+        <label for="allergy">Allergy</label>
+        <input type="text" name="healthIssue" id="allergy"  placeholder="Enter 0 or 1"><br>
+
+        <label for="wheezing">Wheezing</label>
+        <input type="text" name="healthIssue" id="wheezing"  placeholder="Enter 0 or 1"><br>
+
+        <label for="alcoholConsuming">Alcohol Consuming</label>
+        <input type="text" name="healthIssue" id="alcoholConsuming"  placeholder="Enter 0 or 1"><br>
+
+        <label for="coughing">Coughing</label>
+        <input type="text" name="healthIssue" id="coughing"  placeholder="Enter 0 or 1"><br>
+
+        <label for="swallowingDifficulty">Swallowing Difficulty</label>
+        <input type="text" name="healthIssue" id="swallowingDifficulty"  placeholder="Enter 0 or 1"><br>
+
+        <label for="chestPain">Chest Pain</label>
+        <input type="text" name="healthIssue" id="chestPain"  placeholder="Enter 0 or 1"><br>
+
+        <label for="lungCancer">Lung Cancer</label>
+        <input type="text" name="healthIssue" id="lungCancer" " placeholder="Enter 0 or 1"><br>
+        </br>
+        <input type="submit" value="Logout"> 
+    </form> -->
+
+{% endblock %}

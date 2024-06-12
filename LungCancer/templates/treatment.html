@@ -1,0 +1,685 @@
+{% extends "nav.html" %}
+{% block content %}
+{% load static %}
+
+<head>
+  <title>lung data</title>
+  <style>
+  html, body
+  {
+  min-height: 100%;
+  /* background:url({% static 'images/bgimage.jpg' %}); */
+  background-size:cover;
+  }
+  body, div, form, input, select, textarea, label {
+  padding: 0;
+  margin: 0;
+  outline: none;
+  font-family: Roboto, Arial, sans-serif;
+  font-size: 14px;
+  color: #666;
+  line-height: 20px;
+  }
+  h1 {
+  position: absolute;
+  margin:0;
+  font-size: 60px;
+  color: green;
+  line-height: 83px;
+  top:50px;
+  }
+  legend {
+  padding: 10px;
+  font-family: Roboto, Arial, sans-serif;
+  font-size: 18px;
+  color: rgb(255, 255, 255);
+  background-color: #1c87c9;
+  border-radius:5px;
+  }
+  .testbox {
+  display: flex;
+  padding: 20px;
+  }
+  form {
+  width: 100%;
+  padding: 20px;
+  border-radius: 10px;
+  background: #FFFAFA;
+  box-shadow: 0 0 8px #006622;
+  }
+  .banner {
+  position: relative;
+  height: 200px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  }
+  .banner::after {
+  content: "";
+  background-color: rgba(0, 0, 0, 0.2);
+  border-radius:10px;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  }
+  input, select, textarea {
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  }
+  input {
+  width: calc(100% - 10px);
+  padding: 5px;
+  }
+  .item {
+  position: relative;
+  margin: 10px 0;
+  }
+   .item input:hover, .item select:hover, .item textarea:hover {
+  border: 1px solid transparent;
+  box-shadow: 0 0 3px 0  #006622;
+  color: #006622;
+  }
+  .colums {
+  display:flex;
+  justify-content:space-between;
+  flex-direction:row;
+  flex-wrap:wrap;
+  }
+  .colums div {
+  width:48%;
+  }
+
+  .btn-block {
+  margin-top: 10px;
+  text-align: center;
+  }
+  button {
+  width: 150px;
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  background:  #1c87c9;
+  font-size: 16px;
+  color: #fff;
+  cursor: pointer;
+  }
+  button:hover {
+  background:  #0692e8;
+  }
+</style>
+</head>
+<body>
+<div class="testbox">
+<form action="LungPrediction" method="post">
+  <div class="banner">
+    <h1>LUNG CANCER</h1>
+  </div>
+  <br/>
+  <fieldset>
+    <legend>Enter The Details</legend>
+    {% csrf_token %}
+    <div class="colums">
+      <div class="item">
+        <label><b>Age</b></label>
+        <input type="text" name="age" required>
+      </div>
+      <div class="item">
+         <label><b>Gender</b></label>
+        <input type="text" placeholder="female : 1 and male : 2" name="gender" required>
+      </div>
+      <div class="item">
+        <label><b>Air_Pollution</b></label>
+        <input type="text" name="airpollution" required>
+      </div>
+      <div class="item">
+        <label><b>Alcohol_Use</b></label>
+        <input type="text" name="alcoholuse" required>
+      </div>
+      <div class="item">
+        <label><b>Dust_Allergy</b></label>
+        <input type="text" name="dustallergy" required>
+      </div>
+      <div class="item">
+       <label><b>OccuPational_Hazards</b></label>
+        <input type="text" name="occupationalhazards" required>
+      </div>
+      <div class="item">
+        <label><b>Genetic_Risk</b></label>
+        <input type="text" name="geneticrisk" required>
+      </div>
+      <div class="item">
+       <label><b>Chronic_Lung_Disease</b></label>
+        <input type="text" name="chroniclungdisease" required>
+      </div>
+      <div class="item">
+       <label><b>Balanced_Diet</b></label>
+        <input type="text" name="balanceddiet" required>
+      </div>
+      <div class="item">
+       <label><b>Obesity</b></label>
+        <input type="text" name="obesity" required>
+      </div>
+      <div class="item">
+       <label><b>Smoking</b></label>
+        <input type="text" name="smoking" required>
+      </div>
+      <div class="item">
+       <label><b>Passive_Smoker</b></label>
+        <input type="text" name="passivesmoker" required>
+      </div>
+      <div class="item">
+       <label><b>Chest_Pain</b></label>
+        <input type="text" name="chestpain" required>
+      </div>
+      <div class="item">
+       <label><b>Coughing_Of_Blood</b></label>
+        <input type="text" name="coughingofblood" required>
+      </div>
+      <div class="item">
+       <label><b>Fatigue</b></label>
+        <input type="text" name="fatigue" required>
+      </div>
+      <div class="item">
+       <label><b>Weight_Loss</b></label>
+        <input type="text" name="weightloss" required>
+      </div>
+      <div class="item">
+       <label><b>Shortness_Of_Breath</b></label>
+        <input type="text" name="shortnessofbreath" required>
+      </div>
+      <div class="item">
+       <label><b>Wheezing</b></label>
+        <input type="text" name="wheezing" required>
+      </div>
+       <div class="item">
+       <label><b>Swallowing_Difficulty</b></label>
+        <input type="text" name="swallowingdifficulty" required>
+      </div>
+       <div class="item">
+       <label><b>Clubbing_Of_Finger_Nails</b></label>
+        <input type="text" name="clubbingoffingernails" required>
+      </div>
+       <div class="item">
+       <label><b>Frequent_Cold</b></label>
+        <input type="text" name="frequentcold" required>
+      </div>
+       <div class="item">
+       <label><b>Dry_Cough</b></label>
+        <input type="text" name="drycough" required>
+      </div>
+      <div class="item">
+       <label><b>Snoring</b></label>
+        <input type="text" name="snoring" required>
+      </div>
+    </div>
+  </fieldset>
+        <div class="btn-block">
+  <button type="submit">PREDICT LUNG</button>
+  </div>
+</form>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- <head>
+  <style>
+    /* Apply some basic styles to the form */
+body {
+    font-family: Arial, sans-serif;
+    text-align: center;
+    background-color: #f0f0f0;
+}
+
+h1 {
+    color: #333;
+}
+
+form {
+    max-width: 400px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 5px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Style the labels and checkboxes */
+label {
+    display: block;
+    margin-bottom: 10px;
+    font-weight: bold;
+    color: #333;
+}
+
+input[type="checkbox"] {
+    margin-right: 5px;
+}
+
+/* Style the submit button */
+input[type="submit"] {
+    background-color: #007BFF;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+input[type="submit"]:hover {
+    background-color: #0056b3;
+}
+
+/* Add some spacing between the checkboxes */
+input[type="checkbox"] + label {
+    margin-left: 25px;
+}
+
+/* Center the form on smaller screens */
+@media (max-width: 480px) {
+    form {
+        max-width: 90%;
+    }
+}
+
+  </style>
+</head>
+<h4> Lung Cancer Prediction </h4>
+    <form action="LungPrediction" method="post">
+      {% csrf_token %}
+        <label for="yellowFingers">Yellow Fingers</label>
+        <input type="text" name="healthIssue" id="yellowFingers"  placeholder="Enter 0 or 1"><br>
+
+        <label for="anxiety">Anxiety</label>
+        <input type="text" name="healthIssue" id="anxiety"  placeholder="Enter 0 or 1"><br>
+
+        <label for="peerPressure">Peer Pressure</label>
+        <input type="text" name="healthIssue" id="peerPressure"  placeholder="Enter 0 or 1"><br>
+
+        <label for="chronicDisease">Chronic Disease</label>
+        <input type="text" name="healthIssue" id="chronicDisease"  placeholder="Enter 0 or 1"><br>
+
+        <label for="fatigue">Fatigue</label>
+        <input type="text" name="healthIssue" id="fatigue"  placeholder="Enter 0 or 1"><br>
+
+        <label for="allergy">Allergy</label>
+        <input type="text" name="healthIssue" id="allergy"  placeholder="Enter 0 or 1"><br>
+
+        <label for="wheezing">Wheezing</label>
+        <input type="text" name="healthIssue" id="wheezing"  placeholder="Enter 0 or 1"><br>
+
+        <label for="alcoholConsuming">Alcohol Consuming</label>
+        <input type="text" name="healthIssue" id="alcoholConsuming"  placeholder="Enter 0 or 1"><br>
+
+        <label for="coughing">Coughing</label>
+        <input type="text" name="healthIssue" id="coughing"  placeholder="Enter 0 or 1"><br>
+
+        <label for="swallowingDifficulty">Swallowing Difficulty</label>
+        <input type="text" name="healthIssue" id="swallowingDifficulty"  placeholder="Enter 0 or 1"><br>
+
+        <label for="chestPain">Chest Pain</label>
+        <input type="text" name="healthIssue" id="chestPain"  placeholder="Enter 0 or 1"><br> -->
+
+        <!-- <label for="lungCancer">Lung Cancer</label>
+        <input type="text" name="healthIssue" id="lungCancer" " placeholder="Enter 0 or 1"><br> -->
+        <!-- </br>
+        <input type="submit" value="Submit">
+    </form>
+ -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- <table border="1" align="center" cellspacing="10" cellpadding>
+  <thead>
+    <th>Product Name</th>
+    <th>Product Description</th>
+    <th>Product Price</th>
+    <th>Product Image</th>
+  </thead>
+  {% for i in pr %}
+  <tr>
+    <td>{{i.product_name}}</td>
+    <td>{{i.product_description}}</td>
+    <td>{{i.product_price}}</td>
+    <td><img src="{{i.product_image.url}}" height="300" width="350"></td>
+  </tr>
+  {% endfor %}
+</table> -->
+<!-- <!DOCTYPE html>
+<html> -->
+
+  <!-- treatment section -->
+
+  <!-- <section class="treatment_section layout_padding">
+    <div class="side_img">
+      <img src="images/treatment-side-img.jpg" alt="">
+    </div>
+    <div class="container">
+      <div class="heading_container heading_center">
+        <h2>
+          Hospital <span>Treatment</span>
+        </h2>
+      </div>
+      <div class="row">
+        <div class="col-md-6 col-lg-3">
+          <div class="box ">
+            <div class="img-box">
+              <img src="images/t1.png" alt="">
+            </div>
+            <div class="detail-box">
+              <h4>
+                Nephrologist Care
+              </h4>
+              <p>
+                alteration in some form, by injected humour, or randomised words which don't look even slightly e sure there isn't anything
+              </p>
+              <a href="">
+                Read More
+              </a>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6 col-lg-3">
+          <div class="box ">
+            <div class="img-box">
+              <img src="images/t2.png" alt="">
+            </div>
+            <div class="detail-box">
+              <h4>
+                Eye Care
+              </h4>
+              <p>
+                alteration in some form, by injected humour, or randomised words which don't look even slightly e sure there isn't anything
+              </p>
+              <a href="">
+                Read More
+              </a>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6 col-lg-3">
+          <div class="box ">
+            <div class="img-box">
+              <img src="images/t3.png" alt="">
+            </div>
+            <div class="detail-box">
+              <h4>
+                Pediatrician Clinic
+              </h4>
+              <p>
+                alteration in some form, by injected humour, or randomised words which don't look even slightly e sure there isn't anything
+              </p>
+              <a href="">
+                Read More
+              </a>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6 col-lg-3">
+          <div class="box ">
+            <div class="img-box">
+              <img src="images/t4.png" alt="">
+            </div>
+            <div class="detail-box">
+              <h4>
+                Parental Care
+              </h4>
+              <p>
+                alteration in some form, by injected humour, or randomised words which don't look even slightly e sure there isn't anything
+              </p>
+              <a href="">
+                Read More
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section> -->
+
+  <!-- end treatment section -->
+
+   <!-- info section -->
+   <section class="info_section ">
+    <div class="container">
+      <div class="info_top">
+        <div class="info_logo">
+          <a href="">
+            <img src="{% static 'images/logo.png' %}" alt="">
+          </a>
+        </div>
+        <div class="info_form">
+          <form action="">
+            <input type="email" placeholder="Your email">
+            <button>
+              Subscribe
+            </button>
+          </form>
+        </div>
+      </div>
+      <div class="info_bottom layout_padding2">
+        <div class="row info_main_row">
+          <div class="col-md-6 col-lg-3">
+            <h5>
+              Address
+            </h5>
+            <div class="info_contact">
+              <a href="">
+                <i class="fa fa-map-marker" aria-hidden="true"></i>
+                <span>
+                  Location
+                </span>
+              </a>
+              <a href="">
+                <i class="fa fa-phone" aria-hidden="true"></i>
+                <span>
+                  Call +91 877654568
+                </span>
+              </a>
+              <a href="">
+                <i class="fa fa-envelope"></i>
+                <span>
+                  canceropedia@gmail.com
+                </span>
+              </a>
+            </div>
+            <div class="social_box">
+              <a href="">
+                <i class="fa fa-facebook" aria-hidden="true"></i>
+              </a>
+              <a href="">
+                <i class="fa fa-twitter" aria-hidden="true"></i>
+              </a>
+              <a href="">
+                <i class="fa fa-linkedin" aria-hidden="true"></i>
+              </a>
+              <a href="">
+                <i class="fa fa-instagram" aria-hidden="true"></i>
+              </a>
+            </div>
+          </div>
+          <div class="col-md-6 col-lg-3">
+            <div class="info_links">
+              <h5>
+                Useful link
+              </h5>
+              <div class="info_links_menu">
+                <a class="active" href="index.html">
+                  Home
+                </a>
+                <a href="about">
+                  About
+                </a>
+                <a href="treatment">
+                  Treatment
+                </a>
+                <a href="doctor">
+                  Doctors
+                </a>
+                <a href="testimonial">
+                  Testimonial
+                </a>
+                <a href="contact">
+                  Contact us
+                </a>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6 col-lg-3">
+            <div class="info_post">
+              <h5>
+                LATEST POSTS
+              </h5>
+              <div class="post_box">
+                <div class="img-box">
+                  <img src="{% static 'images/post1.jpg' %}" alt="">
+                </div>
+                <p>
+                  Normal
+                  distribution
+                </p>
+              </div>
+              <div class="post_box">
+                <div class="img-box">
+                  <img src="{% static 'images/post2.jpg' %}" alt="">
+                </div>
+                <p>
+                  Normal
+                  distribution
+                </p>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6 col-lg-3">
+            <div class="info_post">
+              <h5>
+                News
+              </h5>
+              <div class="post_box">
+                <div class="img-box">
+                  <img src="{% static 'images/post3.jpg' %}" alt="">
+                </div>
+                <p>
+                  Normal
+                  distribution
+                </p>
+              </div>
+              <div class="post_box">
+                <div class="img-box">
+                  <img src="{% static 'images/post4.png' %}" alt="">
+                </div>
+                <p>
+                  Normal
+                  distribution
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- end info_section -->
+
+
+  <!-- footer section -->
+  <!-- <footer class="footer_section">
+    <div class="container">
+      <p>
+        &copy; <span id="displayYear"></span> All Rights Reserved By
+        <a href="https://html.design/">Free Html Templates</a>
+      </p>
+    </div>
+  </footer> -->
+  <!-- footer section -->
+
+
+
+
+{% endblock %}
